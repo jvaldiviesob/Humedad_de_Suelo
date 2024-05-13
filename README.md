@@ -8,5 +8,5 @@ __https://github.com/QianqianHan96/GSSM1km__.
 
 Repositorio LST de esta cuenta:
 __https://github.com/jvaldiviesob/LST__,
-el cual a su vez esta basado en el repositorio:
+el cual a su vez está basado en el repositorio:
 __https://github.com/shilosh/ContinuousLST__.
