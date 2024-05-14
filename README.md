@@ -6,6 +6,9 @@ Incluye _require_ al script **0.firstYear.js** alojado en _Google Earth Engine_ 
 Basado en el repositorio:
 __https://github.com/QianqianHan96/GSSM1km__.
 
+El script **3.NDVI_EVI.js** incluye un _require_ a la _Open Earth Engine Library (OEEL)_ a través de la línea de código:
+**var oeel=require('users/OEEL/lib:loadAll');**
+
 Repositorio LST de esta cuenta:
 __https://github.com/jvaldiviesob/LST__,
 el cual, a su vez, se basa en el repositorio:
