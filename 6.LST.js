@@ -1,3 +1,6 @@
+
+var firstYear=require('users/corfobbppciren2023/firstYear:0.firstYear.js');
+
 ///////////////////////////***********************************
 //LST
 //var LST=ee.ImageCollection("users/qianrswaterAmerica/LSTEuropeMOD11A1");
@@ -6,15 +9,16 @@
 //var dayLST = LST.filterMetadata("system:index","equals",dayLSTfilter).first().divide(100);
 //var nightLST = LST.filterMetadata("system:index","equals",nightLSTfilter).first().divide(100);
 
-var image = ee.Image('users/corfobbppciren2023/LST_Day');
-var image2 = ee.Image('users/corfobbppciren2023/LST_Night');
+var image = ee.Image('users/corfobbppciren2023/Humedad_de_Suelo_Auxiliares/LST_Day_Valparaiso_'+firstYear.firstYear);
+var image2 = ee.Image('users/corfobbppciren2023/Humedad_de_Suelo_Auxiliares/LST_Night_Valparaiso_'+firstYear.firstYear);
+
 
 //JV: Por qué divide en 100??
 //var dayLST_2019 = ee.ImageCollection(image).first().divide(100);
 //var nightLST_2019 = ee.ImageCollection(image2).first().divide(100);
 
-var dayLST_2019 = ee.ImageCollection(image).first().divide(100);
-var nightLST_2019 = ee.ImageCollection(image2).first().divide(100);
+var dayLST = ee.ImageCollection(image).first().divide(100);
+var nightLST = ee.ImageCollection(image2).first().divide(100);
 
 function batchRename_dailyLST(image){
   var rename=image.bandNames().map(function(name){
@@ -30,7 +34,7 @@ function batchRename_dailyLSTDiff(image){
   return image.rename(rename);
 }
 
-var dailyLST0=batchRename_dailyLST(dayLST_2019.add(nightLST_2019).divide(ee.Number(2)))
+var dailyLST0=batchRename_dailyLST(dayLST.add(nightLST).divide(ee.Number(2)))
 .reproject("EPSG:4326",null,1000);
 
 
@@ -42,7 +46,7 @@ function batchRename_dailyLSTDiff(image){
   return image.rename(rename);
 }
 
-var dailyLSTDiff0=batchRename_dailyLSTDiff(dayLST_2019.subtract(nightLST_2019))
+var dailyLSTDiff0=batchRename_dailyLSTDiff(dayLST.subtract(nightLST))
 .reproject("EPSG:4326",null,1000);
 
 
