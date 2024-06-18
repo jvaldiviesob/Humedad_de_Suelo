@@ -1,6 +1,7 @@
-var coleccion_imagenes=require('users/corfobbppciren2023/Humedad_de_Suelo:1.coleccion_imagenes');
-var firstYear=require('users/corfobbppciren2023/Humedad_de_Suelo:0.firstYear');
-var rep_y_geometria=require('users/corfobbppciren2023/Humedad_de_Suelo:2.rep_y_geometria');
+
+var coleccion_imagenes=require('users/corfobbppciren2023/Humedad_de_Suelo:1.coleccion_imagenes.js');
+var firstYear=require('users/corfobbppciren2023/firstYear:0.firstYear.js');
+var rep_y_geometria=require('users/corfobbppciren2023/Humedad_de_Suelo:2.rep_y_geometria.js');
 
 ///////////////NDVI & EVI
 var modis = coleccion_imagenes.MOD13A2;
