@@ -1,6 +1,7 @@
-var coleccion_imagenes=require('users/corfobbppciren2023/Humedad_de_Suelo:1.coleccion_imagenes');
-var rep_y_geometria=require('users/corfobbppciren2023/Humedad_de_Suelo:2.rep_y_geometria');
-var firstYear=require('users/corfobbppciren2023/Humedad_de_Suelo:0.firstYear');
+
+var coleccion_imagenes=require('users/corfobbppciren2023/Humedad_de_Suelo:1.coleccion_imagenes.js');
+var rep_y_geometria=require('users/corfobbppciren2023/Humedad_de_Suelo:2.rep_y_geometria.js');
+var firstYear=require('users/corfobbppciren2023/firstYear:0.firstYear.js');
 /////////////////////////**********************************
 //*******API************
 //1979-01-02T00:00:00 - 2020-07-09T00:00:00
@@ -11,8 +12,8 @@ var firstYear=firstYear.firstYear;
 var firstDayPreci = ee.String(ee.Number(firstYear).subtract(1)).cat('-11-28');
 var firstDay = ee.String(firstYear.toString()).cat('-01-01');
 var lastDay  = ee.String(ee.Number(firstYear).add(1)).cat('-01-01');
- var lastDayExtra1  = ee.String(ee.Number(firstYear).add(1)).cat('-01-02');
- var ERA5LandPre = coleccion_imagenes.ERA5LandHour.filterDate(firstDayPreci,lastDayExtra1).map(function(img){
+var lastDayExtra1  = ee.String(ee.Number(firstYear).add(1)).cat('-01-02');
+var ERA5LandPre = coleccion_imagenes.ERA5LandHour.filterDate(firstDayPreci,lastDayExtra1).map(function(img){
                      return img.select(["total_precipitation",'total_evaporation']).clip(rep_y_geometria.Boundary)
                            // 20151129T00 represents total precipitation of 20151128 (T01-T00), so one hour shift earlier
                            .set("system:time_start",ee.Number(img.get("system:time_start")).subtract(86400000))
