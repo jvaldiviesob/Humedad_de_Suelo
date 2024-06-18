@@ -1,5 +1,6 @@
-var firstYear=require('users/corfobbppciren2023/Humedad_de_Suelo:0.firstYear');
-var predictores=require('users/corfobbppciren2023/Humedad_de_Suelo:8.predictores');
+
+var firstYear=require('users/corfobbppciren2023/firstYear:0.firstYear.js');
+var predictores=require('users/corfobbppciren2023/Humedad_de_Suelo:8.predictores.js');
 
 // Make a Random Forest classifier and train it
 var clasificador = ee.Classifier.smileRandomForest({
@@ -30,4 +31,8 @@ var clasificador = ee.Classifier.smileRandomForest({
 //calculate the importance of every land surface feature
 var importance=clasificador.explain();
 
+print("importance",importance)
+
 exports.clasificador = clasificador;
+
+//print("random forest")
