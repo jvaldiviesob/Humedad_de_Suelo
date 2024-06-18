@@ -1,6 +1,7 @@
-var coleccion_imagenes=require('users/corfobbppciren2023/Humedad_de_Suelo:1.coleccion_imagenes');
-var rep_y_geometria=require('users/corfobbppciren2023/Humedad_de_Suelo:2.rep_y_geometria');
-var firstYear=require('users/corfobbppciren2023/Humedad_de_Suelo:0.firstYear');
+
+var coleccion_imagenes=require('users/corfobbppciren2023/Humedad_de_Suelo:1.coleccion_imagenes.js');
+var rep_y_geometria=require('users/corfobbppciren2023/Humedad_de_Suelo:2.rep_y_geometria.js');
+var firstYear=require('users/corfobbppciren2023/firstYear:0.firstYear.js');
 /////////////////////*****************************
 //air temperature
 // var preImgCol = ERA5LandHour.filterDate(firstDay.cat("T01"),lastDay.cat("T01")).select("temperature_2m").map(function(col){
@@ -33,7 +34,7 @@ var firstYear=require('users/corfobbppciren2023/Humedad_de_Suelo:0.firstYear');
 // }); 
 // TairCollection=ERA5Land
 
-var ERA5Land=coleccion_imagenes.ERA5Land;
+var ERA5Land=coleccion_imagenes.ERA5Land.filterBounds(rep_y_geometria.Boundary);
 var firstYear=firstYear.firstYear;
 var firstDay = ee.String(firstYear.toString()).cat('-01-01');
 var lastDay  = ee.String(ee.Number(firstYear).add(1)).cat('-01-01');
@@ -53,7 +54,8 @@ var evapoCollection=ERA5Land
 var precipCollection=ERA5Land
                     .map(function(img){return img.select("total_precipitation_sum").rename('Preci')})
                     .filterDate(firstDay,lastDay);
-
+                    
+                    ////precipitacion
 
 exports.TairCollection = TairCollection;
 exports.evapoCollection = evapoCollection;
